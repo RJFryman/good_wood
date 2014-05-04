@@ -21,9 +21,9 @@ exports.create = function(req, res){
   var product = new Product(req.body);
   product.insert(function(){
     product.mkDir(function(){
-      product.addPhoto(req.files.photo.path, req.files.photo.name, function(){
+      product.addPhoto(req.files.photos.path, req.files.photos.name, function(){
         product.update(function(){
-          res.redirect('/products');
+          res.redirect('/');
         });
       });
     });

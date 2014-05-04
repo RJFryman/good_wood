@@ -14,17 +14,14 @@ module.exports = function(req, res, next){
 
 function load(app, fn){
   var home = require('../routes/home');
-  var users = require('../routes/users');
+  var admins = require('../routes/admins');
   var products = require('../routes/products');
   var woods = require('../routes/woods');
   var stains = require('../routes/stains');
 
   app.get('/', d, home.index);
-  app.get('/register', d, users.fresh);
-  app.post('/register', d, users.create);
-  app.get('/login', d, users.auth);
-  app.post('/login', d, users.login);
-  app.post('/logout', d, users.logout);
+  app.post('/register', d, admins.register);
+  app.post('/login', d, admins.login);
   app.post('/products', d, products.create);
   app.post('/products', d, products.addImage);
   app.get('/products', d, products.index);

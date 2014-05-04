@@ -3,3 +3,12 @@ extends ../shared/template
 block content
   h1= title
 
+  form#authentication
+    input#email(type='text', name='email')
+    input#password(type='password', name='password')
+    button#register Register
+    button#login Login
+    ul
+      li: a(href='/products/new') Product new
+      li: a(href='/woods/new') wood new
+      li: a(href='/stains/new') stains new

@@ -3,13 +3,15 @@
 module.exports = Wood;
 
 var woods = global.nss.db.collection('woods');
-var Mongo = require('mongods');
+var Mongo = require('mongodb');
 var fs = require('fs');
+var _ = require('lodash');
+
 
 function Wood(data){
   this.name = data.name;
   this.desc = data.desc;
-  this.pic = data.pic;
+  this.photos = [];
   this.suggestedStain = data.suggestedStain;
   this.isPremium = data.isPremium;
 }
@@ -66,7 +68,7 @@ Wood.find = function(query, fn){
 };
 
 Wood.prototype.mkDir = function(fn){
-  var dirname = this.name.toString();
+  var dirname = this._id.toString();
   var abspath = __dirname + '/../static';
   var relpath = '/img/woods/' + dirname;
   fs.mkdirSync(abspath + relpath);
@@ -77,7 +79,7 @@ Wood.prototype.mkDir = function(fn){
 Wood.prototype.addPhoto = function(oldPath, filename, fn){
   var self = this;
   var abspath = __dirname + '/../static';
-  var relpath = '/img/woods/' + this.name.toString() + '/' + filename;
+  var relpath = '/img/woods/' + this._id.toString() + '/' + filename;
 
   fs.rename(oldPath, abspath + relpath, function(err){
     self.photos.push(relpath);
