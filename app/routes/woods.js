@@ -1,6 +1,6 @@
 'use strict';
 
-var wood = require('../models/wood');
+var Wood = require('../models/wood');
 var exec = require('child_process').exec;
 
 exports.index = function(req, res){
@@ -12,18 +12,18 @@ exports.new = function(req, res){
 };
 
 exports.find = function(req, res){
-  wood.find(req.query, function(woods){
+  Wood.find(req.query, function(woods){
     res.send({woods:woods});
   });
 };
 
 exports.create = function(req, res){
-  var wood = new wood(req.body);
+  var wood = new Wood(req.body);
   wood.insert(function(){
     wood.mkDir(function(){
       wood.addPhoto(req.files.photo.path, req.files.photo.name, function(){
         wood.update(function(){
-          res.redirect('/woods');
+          res.redirect('/');
         });
       });
     });
@@ -31,8 +31,8 @@ exports.create = function(req, res){
 };
 
 exports.addImage = function(req, res){
-  wood.findById(req.params.id, function(wood){
-    wood.addphoto(req.files.pic.path, req.files.pic.name, function(err){
+  Wood.findById(req.params.id, function(wood){
+    wood.addPhoto(req.files.pic.path, req.files.pic.name, function(err){
       wood.update(function(){
         res.redirect('/woods');
       });
@@ -41,7 +41,7 @@ exports.addImage = function(req, res){
 };
 
 exports.removePic = function(req, res){
-  wood.findById(req.params.id, function(wood){
+  Wood.findById(req.params.id, function(wood){
     wood.removePhoto(req.body.url, function(removed){
       wood.update(function(){
         res.send({wood:true});
@@ -51,9 +51,9 @@ exports.removePic = function(req, res){
 };
 
 exports.destroy = function(req, res){
-  wood.findById(req.params.id, function(wood){
+  Wood.findById(req.params.id, function(wood){
     var cmd = 'rm -rf ' + __dirname + '/../static' + wood.photoPath;
-    wood.deleteById(req.params.id, function(){
+    Wood.deleteById(req.params.id, function(){
       exec(cmd, function(){
         res.redirect('woods');
       });

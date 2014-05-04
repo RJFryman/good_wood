@@ -9,7 +9,7 @@ var Mongo = require('mongodb');
 function Product(data){
   this.name = data.name;
   this.desc = data.desc;
-  this.pic = data.pic;
+  this.photos = [];
 }
 
 Product.prototype.insert = function(fn){
@@ -64,18 +64,18 @@ Product.find = function(query, fn){
 };
 
 Product.prototype.mkDir = function(fn){
-  var dirname = this.name.toString();
+  var dirname = this._id.toString();
   var abspath = __dirname + '/../static';
   var relpath = '/img/products/' + dirname;
   fs.mkdirSync(abspath + relpath);
-  this.photopath = relpath;
+  this.photoPath = relpath;
   fn();
 };
 
 Product.prototype.addPhoto = function(oldPath, filename, fn){
   var self = this;
   var abspath= __dirname + '/../static';
-  var relpath = '/img/products/' + this.name.toString() + '/' + filename;
+  var relpath = '/img/products/' + self._id.toString() + '/' + filename;
 
   fs.rename(oldPath, abspath + relpath, function(err){
     self.photos.push(relpath);
