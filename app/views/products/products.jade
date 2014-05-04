@@ -1,0 +1,116 @@
+extends ../shared/template
+
+link(rel= 'stylesheet', href= '/css/products_page.css')
+
+block content
+  .container#container
+    .grid
+      li
+        .content
+          span.rotate Rotate Product
+          .item
+            img(src= '/static/img/product_1_front')
+            img(src= '/static/img/product_1_back')
+          ul.options
+            li.optcustom
+            li.optwood
+              span(data-wood= 'wood_1') Wood 1
+              .opttooltip
+                span(data-wood= 'wood_1') Wood 1
+                span(data-wood= 'wood_2') Wood 2
+                span(data-wood= 'wood_3') Wood 3
+                span(data-wood= 'wood_4') Wood 4
+            li.optstain
+              span(data-stain= 'stain_1') Stain 1
+              .opttooltip
+                span(data-stain= 'stain_1') Stain 1
+                span(data-stain= 'stain_2') Stain 2
+                span(data-stain= 'stain_3') Stain 3
+                span(data-stain= 'stain_4') Stain 4
+            li.optcart
+        .info
+          h3.product_name Product 1
+          span.price $30
+      li
+        .content
+          span.rotate Rotate Product
+          .item
+            img(src= '/static/img/product_2_front')
+            img(src= '/static/img/product_2_back')
+          ul.options
+            li.optcustom
+            li.optwood
+              span(data-wood= 'wood_1') Wood 1
+              .opttooltip
+                span(data-wood= 'wood_1') Wood 1
+                span(data-wood= 'wood_2') Wood 4
+                span(data-wood= 'wood_3') Wood 3
+                span(data-wood= 'wood_4') Wood 4
+            li.optstain
+              span(data-stain= 'stain_1') Stain 1
+              .opttooltip
+                span(data-stain= 'stain_1') Stain 1
+                span(data-stain= 'stain_2') Stain 2
+                span(data-stain= 'stain_3') Stain 3
+                span(data-stain= 'stain_4') Stain 4
+            li.optcart
+        .info
+          h3.product_name Product 2
+          span.price $30
+      li
+        .content
+          span.rotate Rotate Product
+          .item
+            img(src= '/static/img/product_3_front')
+            img(src= '/static/img/product_3_back')
+          ul.options
+            li.optcustom
+            li.optwood
+              span(data-wood= 'wood_1') Wood 1
+              .opttooltip
+                span(data-wood= 'wood_1') Wood 1
+                span(data-wood= 'wood_2') Wood 2
+                span(data-wood= 'wood_3') Wood 3
+                span(data-wood= 'wood_4') Wood 4
+            li.optstain
+              span(data-stain= 'stain_1') Stain 1
+              .opttooltip
+                span(data-stain= 'stain_1') Stain 1
+                span(data-stain= 'stain_2') Stain 2
+                span(data-stain= 'stain_3') Stain 3
+                span(data-stain= 'stain_4') Stain 4
+            li.optcart
+        .info
+          h3.product_name Product 3
+          span.price $30
+      li
+        .content
+          span.rotate Rotate Product
+          .item
+            img(src= '/static/img/product_4_front')
+            img(src= '/static/img/product_4_back')
+          ul.options
+            li.optcustom
+            li.optwood
+              span(data-wood= 'wood_1') Wood 1
+              .opttooltip
+                span(data-wood= 'wood_1') Wood 1
+                span(data-wood= 'wood_2') Wood 2
+                span(data-wood= 'wood_3') Wood 3
+                span(data-wood= 'wood_4') Wood 4
+            li.optstain
+              span(data-stain= 'stain_1') Stain 1
+              .opttooltip
+                span(data-stain= 'stain_1') Stain 1
+                span(data-stain= 'stain_2') Stain 2
+                span(data-stain= 'stain_3') Stain 3
+                span(data-stain= 'stain_4') Stain 4
+            li.optcart
+        .info
+          h3.product_name Product 4
+          span.price $30
+
+block scripts
+  script(src'/js/source/products_page.js')
+  script(var shop = new Shop(document.getElementById('container'));)
+
